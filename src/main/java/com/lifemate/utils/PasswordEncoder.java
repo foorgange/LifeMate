@@ -6,6 +6,7 @@ import org.springframework.util.DigestUtils;
 
 import java.nio.charset.StandardCharsets;
 
+/** 密码加盐工具：随机盐 + MD5，密文格式为「盐@摘要」，matches 时按盐重算比对。 */
 public class PasswordEncoder {
 
     public static String encode(String password) {

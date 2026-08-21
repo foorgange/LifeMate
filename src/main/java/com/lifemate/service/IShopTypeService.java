@@ -6,14 +6,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
 
-/**
- * <p>
- *  服务类
- * </p>
- *
- * @author LiWei
- * @since 2021-12-22
- */
+/** 商铺分类服务接口。实现见 ShopTypeServiceImpl。 */
 public interface IShopTypeService extends IService<ShopType> {
 
     Result querySort();

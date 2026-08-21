@@ -8,6 +8,11 @@ import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * 雪花式 ID 生成器：64 位 = 时间戳差值(左移 32 位) | 当日自增序列。
+ * 序列号用 Redis INCR 按天生成（key: icr:{业务}:{yyyy:MM:dd}），
+ * 被 VoucherOrderServiceImpl 用来生成秒杀订单号。
+ */
 @Component
 public class RedisIdWorker {
     //开始时间戳

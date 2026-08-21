@@ -11,14 +11,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-/**
- * <p>
- * 
- * </p>
- *
- * @author LiWei
- * @since 2021-12-24
- */
+/** 用户详情实体（对应 tb_user_info 表，与 tb_user 一对一）。 */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)

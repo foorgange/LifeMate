@@ -10,14 +10,7 @@ import lombok.experimental.Accessors;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-/**
- * <p>
- * 
- * </p>
- *
- * @author LiWei
- * @since 2021-12-22
- */
+/** 博客评论实体（对应 tb_blog_comments 表，parentId 支持一级/二级评论）。 */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)

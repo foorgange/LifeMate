@@ -17,14 +17,7 @@ import java.util.List;
 
 import static com.lifemate.utils.RedisConstants.SECKILL_STOCK_KEY;
 
-/**
- * <p>
- *  服务实现类
- * </p>
- *
- * @author LiWei
- * @since 2021-12-22
- */
+/** 优惠券服务实现：新增秒杀券时同步保存 SeckillVoucher 并写入 Redis 库存。 */
 @Service
 public class VoucherServiceImpl extends ServiceImpl<VoucherMapper, Voucher> implements IVoucherService {
 

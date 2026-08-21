@@ -2,9 +2,7 @@ package com.lifemate.utils;
 
 import cn.hutool.core.util.StrUtil;
 
-/**
- * @author LiWei
- */
+/** 正则校验工具：手机号/邮箱/验证码格式校验（返回 true 表示"不合法"）。被 UserServiceImpl 调用。 */
 public class RegexUtils {
     /**
      * 是否是无效手机格式

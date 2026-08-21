@@ -7,14 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
-/**
- * <p>
- *  前端控制器
- * </p>
- *
- * @author LiWei
- * @since 2021-12-22
- */
+/** 关注接口：关注/取关、是否关注、共同关注。联动 FollowServiceImpl（MySQL + Redis Set）。 */
 @RestController
 @RequestMapping("/follow")
 public class FollowController {

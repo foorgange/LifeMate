@@ -5,14 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- * <p>
- *  前端控制器
- * </p>
- *
- * @author LiWei
- * @since 2021-12-22
- */
+/** 博客评论接口（占位：业务未实现，实体/Mapper 已就绪）。 */
 @RestController
 @RequestMapping("/blog-comments")
 public class BlogCommentsController {

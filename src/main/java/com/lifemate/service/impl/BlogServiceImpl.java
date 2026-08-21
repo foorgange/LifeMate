@@ -34,14 +34,7 @@ import java.util.stream.LongStream;
 import static com.lifemate.utils.RedisConstants.BLOG_LIKED_KEY;
 import static com.lifemate.utils.RedisConstants.FEED_KEY;
 
-/**
- * <p>
- *  服务实现类
- * </p>
- *
- * @author LiWei
- * @since 2021-12-22
- */
+/** 博客服务实现：热门查询、点赞（Redis ZSet + DB 计数）、发布并推送粉丝收件箱（Feed）、滚动分页等。联动 IUserService/IFollowService/Redis。 */
 @Service
 public class BlogServiceImpl extends ServiceImpl<BlogMapper, Blog> implements IBlogService {
 

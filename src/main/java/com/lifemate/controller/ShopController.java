@@ -12,14 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
-/**
- * <p>
- * 前端控制器
- * </p>
- *
- * @author LiWei
- * @since 2021-12-22
- */
+/** 商铺接口：按 id 查询（IP 限流 + 逻辑过期缓存）、新增/更新（Cache-Aside + RocketMQ 补偿删缓存）、GEO 附近分页、名称搜索。 */
 @RestController
 @RequestMapping("/shop")
 public class ShopController {

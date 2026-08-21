@@ -6,6 +6,10 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
+/**
+ * 应用入口（Spring Boot 启动类）。
+ * @MapperScan 扫描 mapper 包；exposeProxy = true 允许在事务方法内通过 AopContext 获取代理对象。
+ */
 @EnableAspectJAutoProxy(exposeProxy = true)
 @MapperScan("com.lifemate.mapper")
 @SpringBootApplication

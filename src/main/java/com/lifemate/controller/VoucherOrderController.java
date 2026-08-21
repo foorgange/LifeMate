@@ -11,14 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 
-/**
- * <p>
- *  前端控制器
- * </p>
- *
- * @author LiWei
- * @since 2021-12-22
- */
+/** 秒杀订单接口：秒杀下单（@RateLimiter 用户维度 1 秒 5 次）+ 支付回调。下单链路见 VoucherOrderServiceImpl。 */
 @RestController
 @RequestMapping("/voucher-order")
 public class VoucherOrderController {

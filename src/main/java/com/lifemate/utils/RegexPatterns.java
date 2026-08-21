@@ -1,8 +1,6 @@
 package com.lifemate.utils;
 
-/**
- * @author LiWei
- */
+/** 常用校验正则常量：手机号/邮箱/密码/验证码。被 RegexUtils 引用。 */
 public abstract class RegexPatterns {
     /**
      * 手机号正则

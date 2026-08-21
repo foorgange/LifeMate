@@ -1,4 +1,5 @@
--- 滑动窗口限流
+-- 滑动窗口限流脚本（Redis ZSet 原子执行）
+-- 联动：RateLimitAspect 调用（@RateLimiter 注解，维度 global/ip/user）
 -- KEYS[1] 限流 key
 -- ARGV[1] 窗口大小（秒）
 -- ARGV[2] 窗口内最大请求数

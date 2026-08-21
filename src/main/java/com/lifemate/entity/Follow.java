@@ -10,14 +10,7 @@ import lombok.experimental.Accessors;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-/**
- * <p>
- * 
- * </p>
- *
- * @author LiWei
- * @since 2021-12-22
- */
+/** 关注关系实体（对应 tb_follow 表）：userId 关注了 followUserId。 */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)

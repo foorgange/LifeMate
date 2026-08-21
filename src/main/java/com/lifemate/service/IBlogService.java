@@ -4,14 +4,7 @@ import com.lifemate.dto.Result;
 import com.lifemate.entity.Blog;
 import com.baomidou.mybatisplus.extension.service.IService;
 
-/**
- * <p>
- *  服务类
- * </p>
- *
- * @author LiWei
- * @since 2021-12-22
- */
+/** 博客服务接口：热门/详情/点赞/发布/关注流。实现见 BlogServiceImpl。 */
 public interface IBlogService extends IService<Blog> {
 
     Result queryBlogById(Long id);

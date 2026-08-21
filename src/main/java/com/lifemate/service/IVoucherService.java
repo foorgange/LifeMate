@@ -4,14 +4,7 @@ import com.lifemate.dto.Result;
 import com.lifemate.entity.Voucher;
 import com.baomidou.mybatisplus.extension.service.IService;
 
-/**
- * <p>
- *  服务类
- * </p>
- *
- * @author LiWei
- * @since 2021-12-22
- */
+/** 优惠券服务接口：新增（含秒杀券）、按店铺查询。实现见 VoucherServiceImpl。 */
 public interface IVoucherService extends IService<Voucher> {
 
     Result queryVoucherOfShop(Long shopId);

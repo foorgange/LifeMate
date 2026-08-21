@@ -8,14 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
-/**
- * <p>
- *  前端控制器
- * </p>
- *
- * @author LiWei
- * @since 2021-12-22
- */
+/** 优惠券接口：新增普通券/秒杀券（秒杀券同步保存 SeckillVoucher 并写 Redis 库存）、按店铺查券列表。 */
 @RestController
 @RequestMapping("/voucher")
 public class VoucherController {

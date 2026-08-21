@@ -7,6 +7,7 @@ import org.redisson.config.Config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/** Redisson 客户端配置：连接本地 Redis（单机模式）。 */
 @Configuration
 public class RedissonConfig {
     @Bean

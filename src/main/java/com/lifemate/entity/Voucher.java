@@ -11,14 +11,7 @@ import lombok.experimental.Accessors;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-/**
- * <p>
- * 
- * </p>
- *
- * @author LiWei
- * @since 2021-12-22
- */
+/** 优惠券实体（对应 tb_voucher 表）；stock/beginTime/endTime 非表字段，秒杀券新增与展示时使用。 */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)

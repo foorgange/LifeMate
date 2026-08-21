@@ -10,14 +10,7 @@ import lombok.experimental.Accessors;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-/**
- * <p>
- * 
- * </p>
- *
- * @author LiWei
- * @since 2021-12-22
- */
+/** 用户实体（对应 tb_user 表，手机号验证码登录，密码加密存储）。 */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)

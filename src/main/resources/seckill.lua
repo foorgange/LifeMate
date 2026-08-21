@@ -1,3 +1,6 @@
+-- 秒杀资格判断脚本（Redis 原子执行）：库存判断 + 一人一单 + 扣库存。
+-- 返回码：0=成功 1=库存不足 2=重复下单 -1=库存未初始化。
+-- 联动：VoucherOrderServiceImpl.seckillVoucher 调用；通过后由 RocketMQ 异步落单（SeckillVoucherListener）。
 -- 1.参数列表
 --1.1.优惠券id
 local voucherId=ARGV[1]

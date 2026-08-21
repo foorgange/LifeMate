@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+/** 统一响应体：success/errorMsg/data/total，提供 ok/fail 静态工厂方法。 */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

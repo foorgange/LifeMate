@@ -10,14 +10,7 @@ import lombok.experimental.Accessors;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-/**
- * <p>
- * 
- * </p>
- *
- * @author LiWei
- * @since 2021-12-22
- */
+/** 秒杀订单实体（对应 tb_voucher_order 表）；status 状态机见 VoucherOrderServiceImpl。 */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)

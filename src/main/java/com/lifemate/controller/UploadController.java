@@ -12,6 +12,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
 
+/** 图片上传接口：保存到本地目录（SystemConstants.IMAGE_UPLOAD_DIR）并返回访问路径；/blog/delete 供前端清理。 */
 @Slf4j
 @RestController
 @RequestMapping("/upload")

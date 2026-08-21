@@ -6,14 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-/**
- * <p>
- *  Mapper 接口
- * </p>
- *
- * @author LiWei
- * @since 2021-12-22
- */
+/** tb_voucher 表数据访问接口；queryVoucherOfShop 的 SQL 见 resources/mapper/VoucherMapper.xml。 */
 public interface VoucherMapper extends BaseMapper<Voucher> {
 
     List<Voucher> queryVoucherOfShop(@Param("shopId") Long shopId);

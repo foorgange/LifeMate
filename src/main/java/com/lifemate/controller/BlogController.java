@@ -15,14 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.List;
 
-/**
- * <p>
- * 前端控制器
- * </p>
- *
- * @author LiWei
- * @since 2021-12-22
- */
+/** 博客接口：热门列表、详情、点赞、发布（推送到粉丝收件箱）、滚动分页、按用户查询。联动 BlogServiceImpl。 */
 @RestController
 @RequestMapping("/blog")
 public class BlogController {

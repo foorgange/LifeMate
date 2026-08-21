@@ -11,14 +11,7 @@ import lombok.experimental.Accessors;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-/**
- * <p>
- * 
- * </p>
- *
- * @author LiWei
- * @since 2021-12-22
- */
+/** 商铺分类实体（对应 tb_shop_type 表）。 */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)

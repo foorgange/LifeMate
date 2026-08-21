@@ -3,14 +3,7 @@ package com.lifemate.service;
 import com.lifemate.entity.BlogComments;
 import com.baomidou.mybatisplus.extension.service.IService;
 
-/**
- * <p>
- *  服务类
- * </p>
- *
- * @author LiWei
- * @since 2021-12-22
- */
+/** 博客评论服务接口（基础 CRUD，暂无自定义方法）。 */
 public interface IBlogCommentsService extends IService<BlogComments> {
 
 }
