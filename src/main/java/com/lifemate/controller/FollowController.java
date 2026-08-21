@@ -37,7 +37,7 @@ public class FollowController {
      * @return
      */
     @GetMapping("/or/not/{id}")
-    public Result follow(@PathVariable("id") Long followUserId){
+    public Result isFollow(@PathVariable("id") Long followUserId){
         return followService.isFollow(followUserId);
     }
 

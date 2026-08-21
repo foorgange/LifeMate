@@ -5,23 +5,20 @@ import com.lifemate.dto.LoginFormDTO;
 import com.lifemate.dto.Result;
 import com.lifemate.entity.User;
 
-import javax.servlet.http.HttpSession;
-
 /**
- * <p>
- *  服务类
- * </p>
- *
- * @author LiWei
- * @since 2021-12-22
+ * 用户服务接口：验证码登录（Redis 存储令牌，不依赖 HttpSession）与签到。
  */
 public interface IUserService extends IService<User> {
 
-    Result sendCode(String phone, HttpSession session);
+    /** 发送手机验证码 */
+    Result sendCode(String phone);
 
-    Result login(LoginFormDTO loginForm, HttpSession session);
+    /** 验证码登录：成功返回 token */
+    Result login(LoginFormDTO loginForm);
 
+    /** 签到 */
     Result sign();
 
+    /** 统计连续签到天数 */
     Result signCount();
 }

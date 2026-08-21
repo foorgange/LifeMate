@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class WebExceptionAdvice {
     @ExceptionHandler(RuntimeException.class)
     public Result handleRuntimeException(RuntimeException e) {
-        log.error(e.toString(), e);
+        log.error("unhandled runtime exception", e);
         return Result.fail("服务器异常");
     }
 }

@@ -3,7 +3,7 @@
 local voucherId=ARGV[1]
 --1.2.用户id
 local userId=ARGV[2]
---1.3.订单id
+--1.3.订单id（由 Java 生成雪花 id，随 RocketMQ 消息传给消费者，本脚本不再使用）
 local orderId=ARGV[3]
 
 -- 2.数据key
@@ -16,7 +16,7 @@ local orderKey='seckill:order:' .. voucherId
 --3.1.判断库存是否充足
 local stock = tonumber(redis.call('get', stockKey))
 if stock == nil then
-    --print("库存获取失败: " .. stockKey)
+    -- 库存 key 不存在（秒杀活动库存未初始化）
     return -1
 end
 
@@ -33,5 +33,6 @@ end
 redis.call('incrby',stockKey,-1)
 -- 3.6.下单(保存)用户 sadd orderKey userId
 redis.call('sadd',orderKey,userId)
--- 3.7. 发消息到消息队列中 XADD  stream.orders * k1 v1 k2 v2
-redis.call('xadd','stream.orders','*', 'userId',userId,'voucherId',voucherId,'id',orderId)
+-- 3.7.资格判断通过（库存已扣、一人一单已登记），返回 0 表示成功；
+--     订单落库由 RocketMQ 异步完成（见 SeckillVoucherListener）
+return 0

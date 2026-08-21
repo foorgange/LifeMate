@@ -145,7 +145,7 @@ public class BlogServiceImpl extends ServiceImpl<BlogMapper, Blog> implements IB
     }
 
     @Override
-    public Result quertBlogOfFollow(Long max, Integer offset) {
+    public Result queryBlogOfFollow(Long max, Integer offset) {
         //1.获取当前用户
         Long userId = UserHolder.getUser().getId();
         //2.查询收件箱  zrevrangebyscore key  min max limit offset count

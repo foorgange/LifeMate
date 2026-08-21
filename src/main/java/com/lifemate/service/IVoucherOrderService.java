@@ -5,22 +5,16 @@ import com.lifemate.entity.VoucherOrder;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
- * <p>
- *  服务类
- * </p>
- *
- * @author LiWei
- * @since 2021-12-22
+ * 秒杀订单服务接口。
  */
 public interface IVoucherOrderService extends IService<VoucherOrder> {
 
+    /** 秒杀下单：Redis+Lua 判资格，通过后投递 RocketMQ 异步落单 */
     Result seckillVoucher(Long voucherId);
 
-    void createVoucherOrder(VoucherOrder voucherOrder);
-
-    void handleVoucherOrder(VoucherOrder voucherOrder);
-
+    /** 支付回调 */
     boolean payCallback(Long orderId);
 
+    /** 超时关单 */
     boolean closeTimeoutOrder(Long orderId);
 }

@@ -2,31 +2,26 @@ package com.lifemate.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.lifemate.dto.Result;
 import com.lifemate.dto.UserDTO;
 import com.lifemate.entity.Follow;
-import com.lifemate.entity.User;
 import com.lifemate.mapper.FollowMapper;
 import com.lifemate.service.IFollowService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.lifemate.service.IUserService;
+import com.lifemate.utils.RedisConstants;
 import com.lifemate.utils.UserHolder;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
- * <p>
- *  服务实现类
- * </p>
- *
- * @author LiWei
- * @since 2021-12-22
+ * 关注服务：关注关系存 MySQL，同时用 Redis Set 维护关注列表（用于共同关注求交集）。
  */
 @Service
 public class FollowServiceImpl extends ServiceImpl<FollowMapper, Follow> implements IFollowService {
@@ -35,31 +30,27 @@ public class FollowServiceImpl extends ServiceImpl<FollowMapper, Follow> impleme
     private StringRedisTemplate stringRedisTemplate;
 
     @Resource
-    private UserServiceImpl userService;
+    private IUserService userService;
+
     @Override
     public Result follow(Long followUserId, Boolean isFollow) {
-        //获取登录用户
         Long userId = UserHolder.getUser().getId();
-        String key = "follows:" + userId;
-        //1.判断关注还是取关
-        if(isFollow) {
-            //2.关注
+        String key = RedisConstants.FOLLOW_KEY + userId;
+        if (isFollow) {
+            // 1. 关注：写库 + 把关注用户加入 Redis Set
             Follow follow = new Follow();
             follow.setFollowUserId(followUserId);
             follow.setUserId(userId);
-            boolean isSuccess = save(follow);
-            if(isSuccess){
-                //把关注用户的id，放入redis的set集合 sadd userId followUserId
-                stringRedisTemplate.opsForSet().add(key,followUserId.toString());
+            if (save(follow)) {
+                stringRedisTemplate.opsForSet().add(key, followUserId.toString());
             }
-        }else {
-            //3.取关
-            boolean isSuccess = remove(new QueryWrapper<Follow>()
+        } else {
+            // 2. 取关：删库 + 从 Redis Set 移除
+            boolean removed = remove(new QueryWrapper<Follow>()
                     .eq("user_id", userId)
                     .eq("follow_user_id", followUserId));
-            //移除
-            if(isSuccess){
-                stringRedisTemplate.opsForSet().remove(key,followUserId.toString());
+            if (removed) {
+                stringRedisTemplate.opsForSet().remove(key, followUserId.toString());
             }
         }
         return Result.ok();
@@ -68,33 +59,24 @@ public class FollowServiceImpl extends ServiceImpl<FollowMapper, Follow> impleme
     @Override
     public Result isFollow(Long followUserId) {
         Long userId = UserHolder.getUser().getId();
-        //1.查询是否关注select* from tb_follow where user_id=？ and follow_id=?
         Integer count = query().eq("user_id", userId).eq("follow_user_id", followUserId).count();
-            return Result.ok(count>0);
-
+        return Result.ok(count > 0);
     }
 
     @Override
     public Result followCommons(Long id) {
-        //获取当前用户
+        // 1. 求两个用户关注列表的交集（Redis Set SINTER）
         Long userId = UserHolder.getUser().getId();
-        String key = "follows:" + userId;
-        //求交集
-        String key2 = "follows:" + id;
-        Set<String> intersect = stringRedisTemplate.opsForSet().intersect(key, key2);
-        if(intersect==null||intersect.isEmpty()){
+        Set<String> intersect = stringRedisTemplate.opsForSet()
+                .intersect(RedisConstants.FOLLOW_KEY + userId, RedisConstants.FOLLOW_KEY + id);
+        if (intersect == null || intersect.isEmpty()) {
             return Result.ok(Collections.emptyList());
         }
-        //解析出id
+        // 2. 解析出 id 并查询用户信息
         List<Long> ids = intersect.stream().map(Long::valueOf).collect(Collectors.toList());
-
-        //查询用户
-        List<UserDTO> userDTOS = userService
-                .listByIds(ids).stream()
+        List<UserDTO> userDTOS = userService.listByIds(ids).stream()
                 .map(user -> BeanUtil.copyProperties(user, UserDTO.class))
                 .collect(Collectors.toList());
-
         return Result.ok(userDTOS);
-
     }
 }

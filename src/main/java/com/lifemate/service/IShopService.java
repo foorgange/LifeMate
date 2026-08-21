@@ -5,15 +5,11 @@ import com.lifemate.entity.Shop;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
- * <p>
- *  服务类
- * </p>
- *
- * @author LiWei
- * @since 2021-12-22
+ * 店铺服务接口。
  */
 public interface IShopService extends IService<Shop> {
-    Result queryById(Long id) throws InterruptedException;
+
+    Result queryById(Long id);
 
     Result update(Shop shop);
 
